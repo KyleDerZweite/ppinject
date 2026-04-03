@@ -1,0 +1,32 @@
+name: Feature Request
+description: Propose a capability, API improvement, or workflow enhancement.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What practical problem are you trying to solve?
+      placeholder: I need to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Direction
+      description: Describe the behavior or interface you want.
+      placeholder: A possible API or workflow would be...
+    validations:
+      required: true
+
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints and Context
+      description: Include assumptions, file format constraints, or platform requirements.
+      placeholder: Windows-only behavior, PowerPoint compatibility, XML preservation requirements...
+    validations:
+      required: false

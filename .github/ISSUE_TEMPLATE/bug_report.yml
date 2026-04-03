@@ -1,0 +1,49 @@
+name: Bug Report
+description: Report broken behavior, regressions, or incorrect output.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use synthetic inputs only. Do not include private presentation files, secrets, or customer data.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Describe the bug clearly and concretely.
+      placeholder: What happened, and what did you expect instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction Steps
+      description: List the smallest sequence that reproduces the issue.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include OS, Python version, and any relevant PowerPoint or Office version details.
+      placeholder: Windows 11, Python 3.12, Microsoft 365 Apps version ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: artifacts
+    attributes:
+      label: Logs or Sanitized Samples
+      description: Paste errors, stack traces, or sanitized XML snippets if they help.
+      render: text
+    validations:
+      required: false
