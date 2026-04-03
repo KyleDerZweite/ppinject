@@ -1,0 +1,72 @@
+[project]
+name = "ppinject"
+version = "0.1.0a1"
+description = "A surgical XML injector scaffold for .pptx files. Intended for targeted PresentationML mutation without full presentation reconstruction."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+  { name = "ppinject contributors" }
+]
+license = { file = "LICENSE" }
+license-files = ["LICENSE"]
+keywords = [
+  "python",
+  "pptx",
+  "xml-parsing",
+  "presentationml",
+  "office-open-xml",
+  "powerpoint"
+]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Typing :: Typed",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Text Processing :: Markup :: XML"
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/KyleDerZweite/ppinject"
+Repository = "https://github.com/KyleDerZweite/ppinject"
+Issues = "https://github.com/KyleDerZweite/ppinject/issues"
+Documentation = "https://github.com/KyleDerZweite/ppinject/blob/main/docs/INDEX.md"
+
+[dependency-groups]
+dev = [
+  "build>=1.2",
+  "mypy>=1.11",
+  "pre-commit>=4.0",
+  "pytest>=8.0",
+  "ruff>=0.8",
+  "twine>=5.1"
+]
+
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+package = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ppinject"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unused_configs = true
