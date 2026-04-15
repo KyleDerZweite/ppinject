@@ -1,7 +1,7 @@
 [project]
 name = "ppinject"
-version = "0.1.0a1"
-description = "A surgical XML injector scaffold for .pptx files. Intended for targeted PresentationML mutation without full presentation reconstruction."
+version = "0.1.0b1"
+description = "A surgical XML injector for targeted PPTX template rendering and PresentationML mutation."
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [
@@ -18,7 +18,7 @@ keywords = [
   "powerpoint"
 ]
 classifiers = [
-  "Development Status :: 2 - Pre-Alpha",
+  "Development Status :: 4 - Beta",
   "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
   "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",
@@ -31,13 +31,16 @@ classifiers = [
   "Topic :: Software Development :: Libraries",
   "Topic :: Text Processing :: Markup :: XML"
 ]
-dependencies = []
+dependencies = [
+  "lxml>=5.2"
+]
 
 [project.urls]
 Homepage = "https://github.com/KyleDerZweite/ppinject"
 Repository = "https://github.com/KyleDerZweite/ppinject"
 Issues = "https://github.com/KyleDerZweite/ppinject/issues"
 Documentation = "https://github.com/KyleDerZweite/ppinject/blob/main/docs/INDEX.md"
+Changelog = "https://github.com/KyleDerZweite/ppinject/releases"
 
 [dependency-groups]
 dev = [

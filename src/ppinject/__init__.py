@@ -1,5 +1,14 @@
-"""ppinject package scaffold."""
+from importlib.metadata import PackageNotFoundError, version
 
-__all__ = ["__version__"]
+from ppinject.highlevel import RenderReport, render_template_slide
 
-__version__ = "0.1.0a1"
+try:
+	__version__ = version("ppinject")
+except PackageNotFoundError:
+	__version__ = "0.1.0b1"
+
+__all__ = [
+	"RenderReport",
+	"render_template_slide",
+	"__version__",
+]
