@@ -48,7 +48,7 @@ dev = [
   "lxml-stubs>=0.5",
   "mypy>=1.11",
   "pre-commit>=4.0",
-  "pytest>=8.0",
+  "pytest>=9.0.3",
   "ruff>=0.8",
   "twine>=5.1"
 ]
