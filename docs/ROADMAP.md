@@ -37,7 +37,7 @@ but the supported surface is intentionally small and still needs hardening befor
 
 - [x] Align README and docs with the actual public API
 - [x] Add a publish-readiness checklist and concrete usage example
-- [ ] Add publish workflow automation and trusted publisher configuration
+- [x] Add publish workflow automation and trusted publisher configuration
 - [ ] Publish the first public package release once Windows validation is complete
 
 ## Near-term priorities

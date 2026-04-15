@@ -74,7 +74,7 @@ def _build_fixture(template_path: Path) -> None:
 
 
 def test_version_is_defined() -> None:
-    assert __version__ == "0.1.0b1"
+    assert __version__ == "0.1.0b2"
 
 
 def test_render_template_slide_replaces_text_and_images(tmp_path: Path) -> None:

@@ -90,7 +90,7 @@ def _resolve_media_targets(slide_root: ET._Element, rels_root: ET._Element) -> d
         if not target:
             continue
 
-        resolved = posixpath.normpath(str(PurePosixPath("ppt/slides") / PurePosixPath(target)))
+        resolved = posixpath.normpath(str(PurePosixPath("ppt/slides") / PurePosixPath(str(target))))
         media_targets[name] = resolved
 
     return media_targets

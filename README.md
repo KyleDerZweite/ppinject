@@ -10,7 +10,7 @@ A surgical XML injector for `.pptx` files.
 
 ## Release note
 
-`0.1.0b1` is the first release candidate for publication.
+`0.1.0b2` is the first public PyPI beta release.
 It supports deterministic rendering of an existing PPTX template slide by replacing text placeholders and existing picture shapes.
 
 The repository ships a synthetic example template at `examples/Template_Slide.pptx`.
@@ -25,7 +25,7 @@ Typical workflow:
 1. Prepare deterministic text values in your application code.
 2. Render charts or other image assets separately.
 3. Call `render_template_slide` with placeholder values and image replacements.
-4. Open the output in PowerPoint with layout and neighboring XML preserved.
+4. Open the output in PowerPoint with layout and neighboring XML preserved where feasible.
 
 ## Current supported scenario
 

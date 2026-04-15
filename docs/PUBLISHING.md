@@ -1,16 +1,52 @@
-# Publishing
+# Publishing to PyPI
 
-Publishing automation is still manual, but the repository should now be kept in a state that is ready for a first honest package release.
+This document describes the release flow for `ppinject`.
 
-## Preflight checklist
+## One-time setup
 
-1. Confirm the supported behavior statement in `README.md` is still accurate.
-2. Run `uv run ruff check .`.
-3. Run `uv run mypy .`.
-4. Run `uv run pytest -q`.
-5. Run `uv build`.
-6. Run `uv run twine check dist/*`.
-7. Open at least one generated output in PowerPoint on Windows and confirm there is no repair prompt.
+1. In PyPI, configure a Trusted Publisher or Pending Publisher for this GitHub repository:
+   - Owner: `KyleDerZweite`
+   - Repository: `ppinject`
+   - Workflow file: `.github/workflows/publish-pypi.yml`
+   - Environment: `pypi`
+2. In GitHub repository settings, create the `pypi` environment.
+3. Restrict the `pypi` environment to:
+   - branch: `main`
+   - tag: `v*`
+4. Do not add a PyPI API token secret when using Trusted Publisher.
+
+## Local preflight checks
+
+```bash
+uv sync --dev
+uv run pre-commit run --all-files
+uv run ruff check .
+uv run mypy .
+uv run pytest -q
+uv build
+uv run twine check dist/*
+```
+
+## Manual release gate
+
+Before the first public release, open at least one generated output in PowerPoint on Windows and confirm there is no repair prompt for the currently supported template-rendering flow.
+
+## Release process
+
+1. Bump `version` in `pyproject.toml`.
+2. Update release notes and docs so the supported scope stays narrow and accurate.
+3. Commit and push to `main`.
+4. Confirm GitHub `CI` passes on `main`.
+5. Create a GitHub Release with a matching tag such as `v0.1.0b2`.
+6. Mark beta releases as pre-releases in GitHub Releases.
+7. The `publish-pypi.yml` workflow runs automatically and publishes to PyPI.
+
+## Verify installation
+
+```bash
+python -m pip install --upgrade ppinject
+python -c "import ppinject; print(ppinject.__version__)"
+```
 
 ## Release notes guidance
 
@@ -20,8 +56,8 @@ Release notes should state:
 2. What is intentionally out of scope.
 3. Any XML compatibility fixes or known PowerPoint limitations.
 
-## Before enabling automated publication
+## Security notes
 
-1. Add a release workflow and trusted publisher configuration together.
-2. Decide whether versioning should stay beta or move to a broader stability signal.
-3. Keep examples and tests synthetic so the public repository does not depend on customer data.
+- Do not store PyPI API tokens in repository secrets when using Trusted Publisher.
+- Keep templates, images, tests, and examples synthetic and anonymized.
+- Never publish customer presentations or logs with sensitive identifiers.

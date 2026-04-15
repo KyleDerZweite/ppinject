@@ -1,6 +1,6 @@
 [project]
 name = "ppinject"
-version = "0.1.0b1"
+version = "0.1.0b2"
 description = "A surgical XML injector for targeted PPTX template rendering and PresentationML mutation."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -45,6 +45,7 @@ Changelog = "https://github.com/KyleDerZweite/ppinject/releases"
 [dependency-groups]
 dev = [
   "build>=1.2",
+  "lxml-stubs>=0.5",
   "mypy>=1.11",
   "pre-commit>=4.0",
   "pytest>=8.0",
