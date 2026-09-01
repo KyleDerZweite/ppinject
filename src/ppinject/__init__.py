@@ -10,6 +10,6 @@ except PackageNotFoundError:
 
 __all__ = [
 	"RenderReport",
-	"render_template_slide",
 	"__version__",
+	"render_template_slide",
 ]

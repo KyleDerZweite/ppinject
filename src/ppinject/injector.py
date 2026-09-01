@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
 import posixpath
-from pathlib import Path, PurePosixPath
-from typing import Mapping
 import zipfile
+from collections.abc import Mapping
+from dataclasses import dataclass
+from pathlib import Path, PurePosixPath
 
 from lxml import etree as ET
 
