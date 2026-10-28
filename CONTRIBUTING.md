@@ -2,7 +2,7 @@
 
 Thanks for contributing to `ppinject`.
 
-Current direction: API-first Python library for targeted `.pptx` XML mutation, with implementation to follow after scaffold setup.
+The published beta provides `render_template_slide` and `RenderReport` for paragraph-scoped text replacement and existing picture-shape replacement. Preserve this narrow API and the mutation boundaries in `docs/ARCHITECTURE.md`.
 
 ## License and contributions
 
@@ -11,18 +11,23 @@ By submitting contributions, you agree your changes are provided under the same 
 
 ## Setup
 
+Install the uv version required by `[tool.uv].required-version` in `pyproject.toml`.
+The development interpreter is selected by `.python-version`; consumers require Python 3.11 or newer.
+
 ```bash
-uv sync --dev
+uv sync --locked --dev
+uv run --locked pre-commit install
 ```
 
 ## Before opening a PR
 
 ```bash
-uv run ruff check .
-uv run mypy .
-uv run pytest -q
+uv run --locked pre-commit run --all-files
+uv run --locked ruff check .
+uv run --locked mypy .
+uv run --locked pytest -q
 uv build
-uv run twine check dist/*
+uv run --locked twine check dist/*
 ```
 
 ## Contribution rules
@@ -35,9 +40,11 @@ uv run twine check dist/*
 - Keep CLI additions minimal and generic. The library API is the primary interface.
 - Use anonymized and synthetic data only in docs, tests, and issue reports.
 
-## Early-stage guidance
+## Beta guidance
 
-- Do not claim a stable public injection API until it exists.
+- Keep compatibility claims limited to tested scenarios.
+- For XML mutations, test unchanged neighboring structure, unknown extensions, relationships and unrelated archive parts.
+- Keep the Windows PowerPoint opening check separate from automated ZIP/XML checks.
 - Prefer PresentationML and OPC terminology in docs and code.
 - Preserve XML and relationship safety requirements as first-class design constraints.
 

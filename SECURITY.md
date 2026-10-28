@@ -2,12 +2,13 @@
 
 ## Project maturity
 
-`ppinject` is in an **early scaffold stage**.
-The repository structure is in place, but the PPTX processing implementation is not yet complete.
+`ppinject` is a published beta with a narrow API for targeted PPTX text and image replacement.
+It parses and rewrites template archives. Automated ZIP/XML tests do not establish compatibility with every PowerPoint file or provide a sandbox for untrusted input.
 
 ## Supported versions
 
-At this stage, only the latest `main` branch state is considered supported for security fixes.
+Security fixes are developed on `main` for the next beta release.
+Older beta versions do not have maintained security branches; use the latest published beta when consuming the package.
 
 ## Reporting a vulnerability
 
@@ -34,7 +35,8 @@ When reporting, include:
 
 ## Scope notes
 
-- `ppinject` is expected to perform targeted PPTX XML mutations and should not execute embedded code.
+- `ppinject` performs targeted PPTX XML mutations and does not intentionally execute embedded code.
 - Do not process untrusted files in privileged environments without sandboxing.
 - Validate outputs in your own operational context before production use.
-- Future implementations must treat external relationships and digital signatures as safety-sensitive surfaces.
+- Changes must treat external relationships and digital signatures as safety-sensitive archive content.
+- Development tooling is managed in the locked uv dev group. Runtime package dependencies are declared separately in `pyproject.toml`.

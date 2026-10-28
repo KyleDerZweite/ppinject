@@ -10,13 +10,13 @@ The repository ships a synthetic example template at `examples/Template_Slide.pp
 For local development:
 
 ```bash
-uv sync --dev
+uv sync --locked --dev
 ```
 
-For package consumers after publication:
+For package consumers installing the current beta:
 
 ```bash
-pip install ppinject
+python -m pip install --upgrade --pre ppinject
 ```
 
 ## Python API
@@ -133,3 +133,5 @@ Note:
 2. Image replacement assumes the target shape already exists in the template.
 3. Media replacement keeps the original target file extension, so replacement files must match it.
 4. The current public API is focused on deterministic template rendering, not presentation authoring.
+5. The output must be a different file from the template, including symlink and hardlink aliases. Aliases raise `ValueError` before writing.
+6. A missing target is reported rather than raised as an exception. Invalid slide numbers, missing archive parts, malformed XML and invalid image paths or extensions raise before opening the output. Write-time I/O failures can still leave a partial output file.

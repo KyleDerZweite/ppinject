@@ -10,7 +10,14 @@ permissions:
 
 jobs:
   quality:
-    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 2
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.11", "3.14"]
+    runs-on: ${{ matrix.os }}
+    env:
+      UV_PYTHON: ${{ matrix.python }}
 
     steps:
       - name: Checkout
@@ -19,28 +26,28 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v7
         with:
-          python-version: "3.11"
+          python-version: ${{ matrix.python }}
 
       - name: Setup uv
         uses: astral-sh/setup-uv@v7
 
       - name: Sync dependencies
-        run: uv sync --dev
+        run: uv sync --locked --dev
 
       - name: Pre-commit
-        run: uv run pre-commit run --all-files
+        run: uv run --locked pre-commit run --all-files
 
       - name: Ruff
-        run: uv run ruff check .
+        run: uv run --locked ruff check .
 
       - name: MyPy
-        run: uv run mypy .
+        run: uv run --locked mypy .
 
       - name: Pytest
-        run: uv run pytest -q
+        run: uv run --locked pytest -q
 
       - name: Build package
         run: uv build
 
       - name: Twine check
-        run: uv run twine check dist/*
+        run: uv run --locked twine check dist/*

@@ -4,9 +4,9 @@ This repository is prepared for human + AI collaboration.
 
 ## Current phase
 
-- Repository scaffold phase with package, docs, and CI only
-- No functional PPTX mutation API is implemented yet
-- Contributors should avoid implying supported behavior before it exists
+- Published beta with the narrow `render_template_slide` API and `RenderReport`
+- Keep paragraph-scoped text replacement and existing picture-shape targeting as the supported boundary
+- Windows PowerPoint validation remains open in `docs/ROADMAP.md`; ZIP/XML tests do not establish it
 - Contributors should update `docs/ROADMAP.md` when the intended scope changes
 
 ## Working agreements for coding agents
@@ -15,12 +15,12 @@ This repository is prepared for human + AI collaboration.
 2. Prefer preserving existing structure and naming.
 3. Do not introduce broad refactors during feature work.
 4. When touching behavior, update docs in `docs/` in the same change.
-5. When PPTX XML write logic is introduced, include tests that validate unchanged neighboring XML structure.
+5. When changing PPTX XML writes, test unchanged neighboring XML and unrelated archive parts.
 6. Do not add dependencies without documenting rationale in the change.
 7. Avoid em dashes (`--`) and avoid emoji usage in repository text/docs.
 8. Keep the library API as the primary interface; avoid task-specific wrappers.
 
-## Implementation guardrails (future code)
+## Implementation guardrails
 
 - Prioritize XML node-level mutation over full presentation reconstruction.
 - Preserve unsupported or unknown tags and attributes exactly where feasible.
@@ -37,10 +37,11 @@ This repository is prepared for human + AI collaboration.
 
 ## Release and packaging expectations
 
-- Use `uv` for dependency and environment management.
+- Use the uv version required in `pyproject.toml` and the development Python version in `.python-version`.
+- Use `uv sync --locked --dev` and `uv run --locked` for checks; update `uv.lock` deliberately with dependency changes.
 - Keep the package install/build flow in `pyproject.toml`.
 - Prefer small, incremental PRs aligned with roadmap phases.
-- Add publish automation only after the package has usable behavior.
+- Follow `docs/PUBLISHING.md` for the existing Trusted Publisher workflow and release validation gate.
 
 ## Scope
 

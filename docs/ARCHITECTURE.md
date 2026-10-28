@@ -13,6 +13,10 @@ Mutate only targeted PresentationML XML nodes while preserving slide structure, 
 5. Resolve picture shape names through relationship targets and replace the referenced media parts.
 6. Repack the archive while leaving unrelated parts unchanged.
 
+`highlevel.py` owns the public path and mapping adapter. `injector.py` owns archive traversal, XML mutation, media replacement and report construction. The dependency direction remains `highlevel` to `injector`; application-specific logic belongs in the caller.
+
+The output must differ from the template. The archive owner rejects identical paths and existing file aliases before opening the output. The pre-write input checks leave an existing output untouched on failure. Write-time failures are not transactional.
+
 ## Read and write direction
 
 - Traverse slide XML rather than rebuilding the full presentation object model.
@@ -30,6 +34,10 @@ and clears the remaining paragraph text nodes.
 
 This is good enough for deterministic template placeholders in the current MVP,
 but it is not yet a full formatting-preserving run-span mutation engine.
+
+## Preservation evidence
+
+Synthetic tests compare every unrelated archive payload byte-for-byte, preserve part ordering and ZIP entry timestamps, compression and attributes, and compare the target slide tree after removing only the intended text difference. The fixture includes unknown namespace content, comments, geometry and formatted neighboring text. Split-run replacement retains run elements but keeps the paragraph-level formatting limitation described above. These tests do not prove byte-identical serialization of the modified slide or Windows PowerPoint opening behavior.
 
 ## Non-goals
 
