@@ -4,9 +4,9 @@
 
 ## Validation
 
-- [ ] `uv run ruff check .`
-- [ ] `uv run mypy .`
-- [ ] `uv run pytest -q`
+- [ ] `uv run --locked ruff check .`
+- [ ] `uv run --locked mypy .`
+- [ ] `uv run --locked pytest -q`
 
 ## Notes
 

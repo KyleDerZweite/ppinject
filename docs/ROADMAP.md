@@ -16,7 +16,7 @@ but the supported surface is intentionally small and still needs hardening befor
 - [x] Add PPTX ZIP wrapper for read and repack flow
 - [x] Resolve slide relationships for media replacement in a constrained slide scenario
 - [x] Add targeted placeholder replacement for paragraph-scoped text content
-- [ ] Add stronger preservation tests for unchanged neighboring XML
+- [x] Add stronger preservation tests for unchanged neighboring XML
 
 ## Phase 3 - Safe mutation primitives
 
@@ -30,7 +30,7 @@ but the supported surface is intentionally small and still needs hardening befor
 
 - [x] Finalize a minimal public library API for the supported scenario
 - [x] Add synthetic fixture coverage for the first rendering path
-- [ ] Add more fixture coverage for split runs, missing placeholders, and negative cases
+- [x] Add more fixture coverage for split runs, missing placeholders, and negative cases
 - [ ] Add higher-level helper functions once the core mutation path is stable
 
 ## Phase 5 - Release readiness
@@ -38,11 +38,13 @@ but the supported surface is intentionally small and still needs hardening befor
 - [x] Align README and docs with the actual public API
 - [x] Add a publish-readiness checklist and concrete usage example
 - [x] Add publish workflow automation and trusted publisher configuration
-- [ ] Publish the first public package release once Windows validation is complete
+- [x] Publish the first public beta package release, `v0.1.0b2` on 2026-04-15
+- [ ] Record Windows PowerPoint validation evidence before the next release
+- [ ] Correct the existing beta GitHub Release metadata to mark it as a pre-release
 
 ## Near-term priorities
 
-1. Add more negative and preservation-focused tests.
+1. Extend negative and preservation-focused tests when mutation behavior changes.
 2. Validate generated files manually in PowerPoint on Windows for the supported template scenario.
 3. Expand docs only when new behavior is actually supported.
 4. Keep the supported surface narrow rather than over-claiming general PPTX mutation coverage.

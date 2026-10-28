@@ -29,7 +29,7 @@ Typical workflow:
 
 ## Current supported scenario
 
-The current release supports one production scenario:
+The current beta supports one template-rendering scenario:
 
 - render one existing PPTX template slide to a new output file
 - replace text placeholders that resolve within a single paragraph, even if PowerPoint split them across multiple `<a:t>` nodes
@@ -92,7 +92,6 @@ It does not yet contain a broad general-purpose PPTX object model.
 
 ## Documentation
 
-- See `docs/USAGE.md` for API details and a variance-report-style example.
 - See `docs/USAGE.md` for API details and the bundled example template workflow.
 - See `docs/ARCHITECTURE.md` for XML mutation boundaries and tradeoffs.
 - See `docs/ROADMAP.md` for planned expansion beyond the initial template-rendering scenario.
@@ -102,25 +101,25 @@ It does not yet contain a broad general-purpose PPTX object model.
 
 ### Prerequisites
 
-- Python 3.11+
-- [uv](https://docs.astral.sh/uv/)
+- Python 3.11+ for consumers; `.python-version` selects the development interpreter
+- [uv](https://docs.astral.sh/uv/) at the version required in `pyproject.toml`
 
 ### Quick start
 
 ```bash
-uv sync --dev
-uv run pre-commit install
+uv sync --locked --dev
+uv run --locked pre-commit install
 ```
 
 ### Quality checks
 
 ```bash
-uv run pre-commit run --all-files
-uv run ruff check .
-uv run mypy .
-uv run pytest -q
+uv run --locked pre-commit run --all-files
+uv run --locked ruff check .
+uv run --locked mypy .
+uv run --locked pytest -q
 uv build
-uv run twine check dist/*
+uv run --locked twine check dist/*
 ```
 
 ## Publish-readiness checklist

@@ -2,7 +2,15 @@
 
 This document describes the release flow for `ppinject`.
 
-## One-time setup
+## Existing release state
+
+`v0.1.0b2` was published on 2026-04-15. As checked on 2026-10-28, the GitHub
+Release has `prerelease: false` even though the package version is a beta.
+This metadata discrepancy remains for the release owner to correct. No repeat
+publication is needed. Windows PowerPoint validation evidence is not recorded
+in this repository and remains an open release check.
+
+## Publisher configuration
 
 1. In PyPI, configure a Trusted Publisher or Pending Publisher for this GitHub repository:
    - Owner: `KyleDerZweite`
@@ -15,25 +23,29 @@ This document describes the release flow for `ppinject`.
    - tag: `v*`
 4. Do not add a PyPI API token secret when using Trusted Publisher.
 
+The source distribution explicitly includes the package, tests, examples, docs and
+package metadata. Keep this selection in `pyproject.toml` so local environments
+and caches cannot enter release archives.
+
 ## Local preflight checks
 
 ```bash
-uv sync --dev
-uv run pre-commit run --all-files
-uv run ruff check .
-uv run mypy .
-uv run pytest -q
+uv sync --locked --dev
+uv run --locked pre-commit run --all-files
+uv run --locked ruff check .
+uv run --locked mypy .
+uv run --locked pytest -q
 uv build
-uv run twine check dist/*
+uv run --locked twine check dist/*
 ```
 
 ## Manual release gate
 
-Before the first public release, open at least one generated output in PowerPoint on Windows and confirm there is no repair prompt for the currently supported template-rendering flow.
+Before the next release, open a generated output from the bundled synthetic template in PowerPoint on Windows. Confirm there is no repair prompt and check replaced text, images and unchanged layout. Record the source commit, template, Windows and PowerPoint versions, steps, result and validator in the release notes. Automated tests do not close this check.
 
 ## Release process
 
-1. Bump `version` in `pyproject.toml`.
+1. Bump `version` in `pyproject.toml` and the fallback in `src/ppinject/__init__.py`, update the version test, then run `uv lock`.
 2. Update release notes and docs so the supported scope stays narrow and accurate.
 3. Commit and push to `main`.
 4. Confirm GitHub `CI` passes on `main`.
@@ -43,8 +55,10 @@ Before the first public release, open at least one generated output in PowerPoin
 
 ## Verify installation
 
+Use a fresh consumer environment and replace the version below with the release being verified.
+
 ```bash
-python -m pip install --upgrade ppinject
+python -m pip install --upgrade ppinject==0.1.0b2
 python -c "import ppinject; print(ppinject.__version__)"
 ```
 

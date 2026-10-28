@@ -58,10 +58,19 @@ requires = ["hatchling>=1.29.0"]
 build-backend = "hatchling.build"
 
 [tool.uv]
+required-version = "==0.11.16"
 package = true
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/ppinject"]
+
+[tool.hatch.build.targets.sdist]
+# Ship source inputs explicitly so local environments never enter release archives.
+only-include = [
+  "src/ppinject", "tests", "examples", "docs",
+  "README.md", "CONTRIBUTING.md", "SECURITY.md", "LICENSE",
+  "pyproject.toml", "uv.lock", ".python-version",
+]
 
 [tool.ruff]
 line-length = 100

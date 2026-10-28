@@ -133,6 +133,10 @@ def render_slide_package(
 ) -> RenderReport:
     if slide_number <= 0:
         raise ValueError("slide_number must be positive")
+    if output_path.resolve() == template_path.resolve() or (
+        output_path.exists() and output_path.samefile(template_path)
+    ):
+        raise ValueError("output_path must be a different file from template_path")
 
     slide_part = f"ppt/slides/slide{slide_number}.xml"
     rels_part = f"ppt/slides/_rels/slide{slide_number}.xml.rels"
